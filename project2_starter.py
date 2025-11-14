@@ -1,10 +1,9 @@
 """
 COMP 163 - Project 2: Character Abilities Showcase
-Name: [Your Name Here]
-Date: [Date]
+Name: Angel Drake
+Date: 11.14.2025
 
-AI Usage: [Document any AI assistance used]
-Example: AI helped with inheritance structure and method overriding concepts
+AI Usage: AI used to help with inhertiance implementations and debugging.
 """
 
 # ============================================================================
@@ -53,48 +52,40 @@ class SimpleBattle:
 # YOUR CLASSES TO IMPLEMENT (6 CLASSES TOTAL)
 # ============================================================================
 
+# Base Class for all characters.
+# Root of inheritance hierachy. Holds the common attributes and methods.
 class Character:
-    """
-    Base class for all characters.
-    This is the top of our inheritance hierarchy.
-    """
     
     def __init__(self, name, health, strength, magic):
-        """Initialize basic character attributes"""
-        # TODO: Set the character's name, health, strength, and magic
-        # These should be stored as instance variables
-        pass
+        """Initializes core character atttributes shared by all subclasses"""
+        self.name = name
+        self.health = health
+        self.strength = strength
+        self.magic = magic        
         
     def attack(self, target):
-        """
-        Basic attack method that all characters can use.
-        This method should:
-        1. Calculate damage based on strength
-        2. Apply damage to the target
-        3. Print what happened
-        """
-        # TODO: Implement basic attack
-        # Damage should be based on self.strength
-        # Use target.take_damage(damage) to apply damage
-        pass
+        """Base attack method. Applies damage equal to the character's strength"""
+        damage = self.strength
+        print(f"{self.name} attacks {target.name} for {damage} damage!")
+        target.take_damage(damage)       
         
     def take_damage(self, damage):
-        """
-        Reduces this character's health by the damage amount.
-        Health should never go below 0.
-        """
-        # TODO: Implement taking damage
-        # Reduce self.health by damage amount
-        # Make sure health doesn't go below 0
-        pass
+        """Reduced health by daamge amount. Ensures health does not go below 0."""
+        self.health -= damage
+        if self.health < 0:
+            self.health = 0
+        print(f"{self.name} takes {damage} damage! (HP: {self.health})")        
         
     def display_stats(self):
         """
-        Prints the character's current stats in a nice format.
+        Prints the character's current core stats in a formatted way.
         """
-        # TODO: Print character's name, health, strength, and magic
-        # Make it look nice with formatting
-        pass
+        print("---------Character Stats---------")
+        print(f"Name:      {self.name}")
+        print(f"Health:    {self.health}")
+        print(f"Strength:  {self.strength}")
+        print(f"Magic:      {self.magic}")
+        print("---------------------------------")
 
 class Player(Character):
     """
