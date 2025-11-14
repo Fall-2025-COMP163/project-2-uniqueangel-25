@@ -87,6 +87,7 @@ class Character:
         print(f"Magic:      {self.magic}")
         print("---------------------------------")
 
+# --- PARENT CLASS (inherits from Character) ---
 class Player(Character):
     """
     Base class for player characters.
@@ -115,38 +116,35 @@ class Player(Character):
         print(f"Experience:    {self.experience}")
         print(f"--------------------------------")
 
+# --- CHILD CLASS (inherits from Player) ---
 class Warrior(Player):
     """
-    Warrior class - strong physical fighter.
-    Inherits from Player.
+    Warrior class focused on hish physical damage and health.
+    Overrides the attach method for unique combat behavior
     """
     
     def __init__(self, name):
         """
-        Create a warrior with appropriate stats.
-        Warriors should have: high health, high strength, low magic
+        Initializes the Warrior with fixed, high physical stats."
         """
-        # TODO: Call super().__init__() with warrior-appropriate stats
-        # Suggested stats: health=120, strength=15, magic=5
-        pass
+        super().__init__(name, "Warrior",120, 15, 5)        
         
     def attack(self, target):
         """
         Override the basic attack to make it warrior-specific.
-        Warriors should do extra physical damage.
+       Excutes a phydical slash with bonus damage based on strength.
         """
-        # TODO: Implement warrior attack
-        # Should do more damage than basic attack
-        # Maybe strength + 5 bonus damage?
-        pass
+        damage = self.strength + 5
+        print(f"{self.name} slashes {target.name} for {damage} damage!")
+        target.take_damage(damage)        
         
     def power_strike(self, target):
         """
         Special warrior ability - a powerful attack that does extra damage.
         """
-        # TODO: Implement power strike
-        # Should do significantly more damage than regular attack
-        pass
+        damage = (self.strength * 2) + 10
+        print(f"{self.name} unleashes a POWER STRIKE on {target.name} for {damage} damage")
+        target.take_damage(damage)
 
 class Mage(Player):
     """
