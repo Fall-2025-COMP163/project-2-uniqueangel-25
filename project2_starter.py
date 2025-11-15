@@ -146,6 +146,7 @@ class Warrior(Player):
         print(f"{self.name} unleashes a POWER STRIKE on {target.name} for {damage} damage")
         target.take_damage(damage)
 
+# --- CHILD CLASS (inherits from Player) ---
 class Mage(Player):
     """
     Mage class - magical spellcaster.
@@ -153,30 +154,21 @@ class Mage(Player):
     """
     
     def __init__(self, name):
-        """
-        Create a mage with appropriate stats.
-        Mages should have: low health, low strength, high magic
-        """
-        # TODO: Call super().__init__() with mage-appropriate stats
-        # Suggested stats: health=80, strength=8, magic=20
-        pass
+        """Initializes the Mage with fixed, high magic stats"""
+        super().__init__(name, "Mage", 80, 8, 20)
         
     def attack(self, target):
-        """
-        Override the basic attack to make it magic-based.
-        Mages should use magic for damage instead of strength.
-        """
-        # TODO: Implement mage attack
-        # Should use self.magic for damage calculation instead of strength
-        pass
+        """Overrides Character/Player attack. Excutes a magic attack"""
+
+        damage = self.magic + 3
+        print(f"{self.name} casts a magic attack on {target.name} for {damage} damage!")
+        target.take_damage(damage)      
         
     def fireball(self, target):
-        """
-        Special mage ability - a powerful magical attack.
-        """
-        # TODO: Implement fireball spell
-        # Should do magic-based damage with bonus
-        pass
+        """Special mage ability - a powerful magical attack."""
+        damage = (self.magic * 2) + 5
+        print(f"{self.name} casts a magic attack on {target.name} for {damage} damage!")
+        target.take_damage(damage)
 
 class Rogue(Player):
     """
