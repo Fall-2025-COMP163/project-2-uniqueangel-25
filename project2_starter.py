@@ -202,25 +202,19 @@ class Rogue(Player):
         print(f"{self.name} performs a SNEAK ATTACK on {target.name} for {damage} damage!")
         target.take_damage(damage)
 
+# --- COMPOSITION CLASS ---
 class Weapon:
     """
-    Weapon class to demonstrate composition.
-    Characters can HAVE weapons (composition, not inheritance).
-    """
+    A seperate class used by characters via composition(has-arelationship)."""
     
     def __init__(self, name, damage_bonus):
-        """
-        Create a weapon with a name and damage bonus.
-        """
-        # TODO: Store weapon name and damage bonus
-        pass
-        
+        """Initializes weapon name and its damage bonus value"""
+        self.name = name
+        self.damage_bonus = damage_bonus
+          
     def display_info(self):
-        """
-        Display information about this weapon.
-        """
-        # TODO: Print weapon name and damage bonus
-        pass
+        """Prints the weapon's attributes."""
+        print(f"Weapon: {self.name} | Damage Bonus: {self.damage_bonus}") 
 
 # ============================================================================
 # MAIN PROGRAM FOR TESTING (YOU CAN MODIFY THIS FOR TESTING)
