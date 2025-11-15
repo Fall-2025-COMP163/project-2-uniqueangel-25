@@ -170,6 +170,7 @@ class Mage(Player):
         print(f"{self.name} casts a magic attack on {target.name} for {damage} damage!")
         target.take_damage(damage)
 
+# --- CHILD CLASS (inherits from Player) ---
 class Rogue(Player):
     """
     Rogue class - quick and sneaky fighter.
@@ -178,30 +179,28 @@ class Rogue(Player):
     
     def __init__(self, name):
         """
-        Create a rogue with appropriate stats.
-        Rogues should have: medium health, medium strength, medium magic
-        """
-        # TODO: Call super().__init__() with rogue-appropriate stats
-        # Suggested stats: health=90, strength=12, magic=10
-        pass
+        Initalizes teh Rogue with balanced stats suitable for a sneeaky role"""
+        super().__init__(name, "Rogue", 90, 12, 10)     
         
     def attack(self, target):
         """
-        Override the basic attack to make it rogue-specific.
-        Rogues should have a chance for extra damage (critical hits).
+        Overrides Character/Player attack. Introduces a chance of 
+        30% for a critial hit(double damage).
         """
-        # TODO: Implement rogue attack
-        # Could add a chance for critical hit (double damage)
-        # Hint: use random.randint(1, 10) and if result <= 3, it's a crit
-        pass
+        import random
+        damage = self.strength
+        if random.randint(1,10) <= 3:
+            damage*= 2
+            print(f"{self.name} lands a CRITICAL HIT on {target.name} for {damage} damage!")
+        else:
+            print(f"{self.name} attacks {target.name} for {damage} damage.")
+        target.take_damage(damage)        
         
     def sneak_attack(self, target):
-        """
-        Special rogue ability - guaranteed critical hit.
-        """
-        # TODO: Implement sneak attack
-        # Should always do critical damage
-        pass
+        """Special rogue ability - guaranteed critical hit."""
+        damage = self.strength * 2
+        print(f"{self.name} performs a SNEAK ATTACK on {target.name} for {damage} damage!")
+        target.take_damage(damage)
 
 class Weapon:
     """
